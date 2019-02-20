@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BSAutocomplete
 
 class ViewController: UIViewController {
   // MARK: - IBOutlets and IBActions -
@@ -18,10 +19,17 @@ class ViewController: UIViewController {
     }
   }
   
+  // MARK: - Instance Variables -
+  private lazy var autocomplete = { [unowned self] in
+    return BSAutocomplete(at: Either.textView(contentsTextView), data: hashtags)
+  }()
+  
   // MARK: - ViewController LifeCycle Methods -
   override func viewDidLoad() {
     super.viewDidLoad()
+    
     // Do any additional setup after loading the view, typically from a nib.
+    _ = autocomplete
   }
   
   override func didReceiveMemoryWarning() {

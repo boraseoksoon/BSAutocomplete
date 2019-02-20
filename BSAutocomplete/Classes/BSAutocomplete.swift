@@ -8,42 +8,59 @@
 
 import UIKit
 
-class BSAutocomplete: UIView {
+public enum Either<T1: UITextView, T2: UITextField> {
+  case textView(T1)
+  case textField(T2)
+}
+
+public class BSAutocomplete: UIView {
+  // MARK: - Instance Variables -
   private var dataSource: SimplePrefixQueryDataSource!
   private var ramReel: RAMReel<RAMCell, RAMTextField, SimplePrefixQueryDataSource>!
   
-  private weak var _observedTouchView: UIView! {
-    didSet {
-      _observedTouchView.isUserInteractionEnabled = true
-    }
-  }
-  private weak var observedTouchView: UIView! {
-    get {
-      return _observedTouchView
-    }
-    set {
-      _observedTouchView = newValue
-    }
-  }
-
-  
+  // MARK: - Initializers  -
   required init?(coder aDecoder: NSCoder) {
     fatalError("creating instance programatically is not allowed!")
   }
   
-  init(data: [String]) {
+  public init(at focusView: Either<UITextView, UITextField>, data: [String]) {
     super.init(frame: UIScreen.main.bounds)
     
-    guard let baseView = FindBaseView(from: self.observedTouchView.superview) else { print("baseView not found"); return }
+    switch focusView {
+    case .textView(let textView):
+      initialization(at: textView, data: data)
+
+    case .textField(let textField):
+      initialization(at: textField, data: data)
+    }
+  }
+
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+  }
+  
+  // MARK: - View LifeCycle Methods  -
+  override public func awakeFromNib() {
+    super.awakeFromNib()
+  }
+  
+}
+
+// MARK: - Own Methods -
+extension BSAutocomplete {
+//  public func readyToUse() -> Void {
+//    FindBaseView(from: self.observedTouchView.superview)?.addSubview(self)
+//  }
+  private func initialization(at focusView: UIView, data: [String]) -> Void {
+    guard let baseView = FindBaseView(from: focusView) else { print("**ERROR**"); return }
     
     dataSource = SimplePrefixQueryDataSource(data)
-
+    
     ramReel = RAMReel(frame: baseView.bounds,
                       dataSource: dataSource,
                       placeholder: "Start by typing…",
                       attemptToDodgeKeyboard: true) {
                         print("Plain:", $0)
-                        
     }
     
     ramReel.hooks.append {
@@ -54,12 +71,8 @@ class BSAutocomplete: UIView {
     
     baseView.addSubview(ramReel.view)
     ramReel.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-  }
-}
-
-extension BSAutocomplete {
-  public func readyToUse() -> Void {
-    FindBaseView(from: self.observedTouchView.superview)?.addSubview(self)
+    
+    ramReel.view.isHidden = true
   }
 }
 
