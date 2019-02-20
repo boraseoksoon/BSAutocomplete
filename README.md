@@ -5,24 +5,34 @@
 [![License](https://img.shields.io/cocoapods/l/BSAutocomplete.svg?style=flat)](https://cocoapods.org/pods/BSAutocomplete)
 [![Platform](https://img.shields.io/cocoapods/p/BSAutocomplete.svg?style=flat)](https://cocoapods.org/pods/BSAutocomplete)
 
-BSAutocomplete provides easy-to-use and powerful autocomplete based on full screen UI for iOS.
+BSAutocomplete provides easy-to-use and powerful autocomplete based on full screen UI for iOS.<br>
+With prefix you would like to such as '#', '@' or '$', whatever prefix you like, you can add autocomplete features into UITextView or UITextField to help users write better specific contents containing the prefix while writing any text. <br>
 
+BSAutocomplete is heavily used in ['All-Dayz'](https://itunes.apple.com/app/id1434294288) application.<br>
+
+It's like in 'All Dayz': <br>
+<img src="https://firebasestorage.googleapis.com/v0/b/dayz-dev.appspot.com/o/alldayz_screenshot.png?alt=media&token=eb5a5d25-d29c-4780-99af-48e05b784c6f" width=320>
+<br>
+
+It's like in this example project: <br>
 <img src="https://firebasestorage.googleapis.com/v0/b/dayz-dev.appspot.com/o/bsautocomplete_screenshot.png?alt=media&token=aae319a9-2a58-4a2e-822f-3153a6f34ecd" width=320>
-
+<br>
 
 GIF: 
 <br>
 <img src="https://media.giphy.com/media/bE3Olvp3azcW8qxAJu/giphy.gif" width=240>
+<br>
 
-Video URL Link:
+Youtube video URL Link for how it works: <br>
 [a link00](https://www.youtube.com/watch?v=l_FbmPHrbBI)
 <br>
 [a link01](https://www.youtube.com/watch?v=uOJv1TJQAyA)
- 
+
 <!--[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/l_FbmPHrbBI/0.jpg)](https://www.youtube.com/watch?v=l_FbmPHrbBI)-->
 <!--<br>-->
 <!--[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/uOJv1TJQAyA/0.jpg)](https://www.youtube.com/watch?v=uOJv1TJQAyA)-->
 
+<br>
 <br>
 
 ## Example
