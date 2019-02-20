@@ -94,7 +94,7 @@ public class BSAutocomplete: UIView {
 
 // MARK: - Public Own Methods -
 extension BSAutocomplete {
-  public func receive(currentUserInput: String, from: Either<UITextView, UITextField>) -> Void {
+  public func observe(currentUserInput: String, from: Either<UITextView, UITextField>) -> Void {
     either = from
     
     if currentUserInput == self.prefix {

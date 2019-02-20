@@ -239,9 +239,9 @@ extension ViewController: BSAutocompleteDelegate {
 extension ViewController: UITextFieldDelegate {
   func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
     /**
-     * Must apply this API to keep track of the text.
+     * Must apply this API to keep track of the text being written.
      */
-    autocomplete.receive(currentUserInput: string, from: .textField(textField))
+    autocomplete.observe(currentUserInput: string, from: .textField(textField))
     return true
   }
   
@@ -250,6 +250,7 @@ extension ViewController: UITextFieldDelegate {
     if textField.isFirstResponder {
       textField.resignFirstResponder()
     }
+    
     return true
   }
 }
@@ -258,9 +259,9 @@ extension ViewController: UITextFieldDelegate {
 extension ViewController: UITextViewDelegate {
   func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
     /**
-     * Must apply this API to keep track of the text.
+     * Must apply this API to keep track of the text being written.
      */
-    autocomplete.receive(currentUserInput: text, from: .textView(textView))
+    autocomplete.observe(currentUserInput: text, from: .textView(textView))
     
     /// keyboard down logic
     if(text == "\n") {
@@ -269,7 +270,7 @@ extension ViewController: UITextViewDelegate {
       }
       return false
     }
-    return true
     
+    return true
   }
 }
