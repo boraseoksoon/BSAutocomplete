@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -34,25 +34,25 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write contents here!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SG2-L7-F0f">
-                                <rect key="frame" x="36" y="126" width="176" height="21"/>
+                                <rect key="frame" x="36" y="116" width="176" height="21"/>
                                 <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.37647058820000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Type '@' to see autocomplete!" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Iq2-7d-ZOy">
-                                <rect key="frame" x="36" y="157" width="303" height="100"/>
+                                <rect key="frame" x="36" y="147" width="303" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type '@' to see autocomplete!" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eNY-RU-HX5">
-                                <rect key="frame" x="36" y="316" width="303" height="30"/>
+                                <rect key="frame" x="36" y="296" width="303" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="EXb-Ch-xf0">
-                                <rect key="frame" x="36" y="366" width="303" height="29"/>
+                                <rect key="frame" x="36" y="346" width="303" height="29"/>
                                 <segments>
                                     <segment title="@"/>
                                     <segment title="#"/>
@@ -63,7 +63,7 @@
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write your nickname here!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LNp-f7-geR">
-                                <rect key="frame" x="36" y="287" width="229" height="21"/>
+                                <rect key="frame" x="36" y="267" width="229" height="21"/>
                                 <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.37647058820000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -80,7 +80,7 @@
                             <constraint firstItem="Iq2-7d-ZOy" firstAttribute="leading" secondItem="SG2-L7-F0f" secondAttribute="leading" id="FdE-yL-ukY"/>
                             <constraint firstItem="ZXB-f3-EgK" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="15" id="LDt-LA-Zp1"/>
                             <constraint firstItem="EXb-Ch-xf0" firstAttribute="width" secondItem="eNY-RU-HX5" secondAttribute="width" id="MXL-vC-CCp"/>
-                            <constraint firstItem="LNp-f7-geR" firstAttribute="top" secondItem="Iq2-7d-ZOy" secondAttribute="bottom" constant="30" id="PB0-Am-kyp"/>
+                            <constraint firstItem="LNp-f7-geR" firstAttribute="top" secondItem="Iq2-7d-ZOy" secondAttribute="bottom" constant="20" id="PB0-Am-kyp"/>
                             <constraint firstItem="Iq2-7d-ZOy" firstAttribute="top" secondItem="SG2-L7-F0f" secondAttribute="bottom" constant="10" id="e0p-pU-bHe"/>
                             <constraint firstItem="Iq2-7d-ZOy" firstAttribute="trailing" secondItem="egA-kk-nkk" secondAttribute="trailing" id="fAi-YR-4wy"/>
                             <constraint firstAttribute="trailingMargin" secondItem="egA-kk-nkk" secondAttribute="trailing" constant="20" id="keC-JG-cfR"/>
@@ -89,7 +89,7 @@
                             <constraint firstItem="EXb-Ch-xf0" firstAttribute="centerX" secondItem="eNY-RU-HX5" secondAttribute="centerX" id="qIm-9X-Bs1"/>
                             <constraint firstItem="eNY-RU-HX5" firstAttribute="leading" secondItem="LNp-f7-geR" secondAttribute="leading" id="uEh-6W-aCh"/>
                             <constraint firstItem="eNY-RU-HX5" firstAttribute="width" secondItem="egA-kk-nkk" secondAttribute="width" id="uiI-7H-Gi9"/>
-                            <constraint firstItem="SG2-L7-F0f" firstAttribute="top" secondItem="egA-kk-nkk" secondAttribute="bottom" constant="30" id="xPh-A8-iDz"/>
+                            <constraint firstItem="SG2-L7-F0f" firstAttribute="top" secondItem="egA-kk-nkk" secondAttribute="bottom" constant="20" id="xPh-A8-iDz"/>
                         </constraints>
                     </view>
                     <connections>

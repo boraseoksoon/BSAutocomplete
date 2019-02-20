@@ -5,9 +5,11 @@
 [![License](https://img.shields.io/cocoapods/l/BSAutocomplete.svg?style=flat)](https://cocoapods.org/pods/BSAutocomplete)
 [![Platform](https://img.shields.io/cocoapods/p/BSAutocomplete.svg?style=flat)](https://cocoapods.org/pods/BSAutocomplete)
 
+BSAutocomplete provides easy-to-use and powerful autocomplete based on full screen UI for iOS.
+
 <br>
-<img src="https://media.giphy.com/media/65Tofr7RHme0aecQLS/giphy.gif" width=240>
-<img src="https://media.giphy.com/media/443khYj7M5YEz7s9WH/giphy.gif" width=240>
+[![Video Label](https://media.giphy.com/media/bE3Olvp3azcW8qxAJu/giphy.gif)](https://youtu.be/l_FbmPHrbBI)
+[![Video Label](https://media.giphy.com/media/5YfdI7NQBhtU9LNZeF/giphy.gif)](https://youtu.be/uOJv1TJQAyAI)
 <br>
 
 ## Example
@@ -15,10 +17,12 @@
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
+
 iOS 10.0+ <br>
 Swift 4.2 + <br>
 
 ## How to use
+
 <br>
 First things first,
 <br> 
@@ -140,9 +144,15 @@ func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replace
 <b>That's all! Just enjoy BSAutocomplete! :)</b>
 <br>
 
+## ETC
+
+BSAutocomplete is built based on the Ramotion/reel-search project.
+Ramotion/reel-search repository URL: https://github.com/Ramotion/reel-search
+(reel-search in BSAutocomplete has been so customized slightly that it is different.)
 
 ## Installation
 
+We recommend using CocoaPods to install the library.
 BSAutocomplete is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
