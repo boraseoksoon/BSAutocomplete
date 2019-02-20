@@ -8,8 +8,10 @@
 BSAutocomplete provides easy-to-use and powerful autocomplete based on full screen UI for iOS.
 
 <br>
-[![Video Label](https://media.giphy.com/media/bE3Olvp3azcW8qxAJu/giphy.gif)](https://youtu.be/l_FbmPHrbBI)
-[![Video Label](https://media.giphy.com/media/5YfdI7NQBhtU9LNZeF/giphy.gif)](https://youtu.be/uOJv1TJQAyAI)
+[![BSAutocomplete](https://media.giphy.com/media/bE3Olvp3azcW8qxAJu/giphy.gif)](https://www.youtube.com/watch?v=uOJv1TJQAyA)
+
+<!--[![Video Label](https://media.giphy.com/media/bE3Olvp3azcW8qxAJu/giphy.gif)](https://youtu.be/l_FbmPHrbBI)-->
+<!--[![Video Label](https://media.giphy.com/media/5YfdI7NQBhtU9LNZeF/giphy.gif)](https://youtu.be/uOJv1TJQAyAI)-->
 <br>
 
 ## Example
@@ -23,9 +25,6 @@ Swift 4.2 + <br>
 
 ## How to use
 
-<br>
-First things first,
-<br> 
 <b>Step 0. import BSAutocomplete</b>
 <br>
 
