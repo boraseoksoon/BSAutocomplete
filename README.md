@@ -11,8 +11,12 @@ BSAutocomplete provides easy-to-use and powerful autocomplete based on full scre
 <img src="https://media.giphy.com/media/bE3Olvp3azcW8qxAJu/giphy.gif" width=240>
 <img src="https://media.giphy.com/media/5YfdI7NQBhtU9LNZeF/giphy.gif" width=240>
 
-<iframe width="420" height="315" src="https://youtu.be/l_FbmPHrbBI" frameborder="0" allowfullscreen></iframe>
-<iframe width="420" height="315" src="https://youtu.be/uOJv1TJQAyAI" frameborder="0" allowfullscreen></iframe>
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/l_FbmPHrbBI/0.jpg)](https://www.youtube.com/watch?v=l_FbmPHrbBI)
+
+[![Alt text](https://img.youtube.com/vi/VID/0.jpg)](https://www.youtube.com/watch?v=VID)
+
+<!--<iframe width="420" height="315" src="https://youtu.be/l_FbmPHrbBI" frameborder="0" allowfullscreen></iframe>-->
+<!--<iframe width="420" height="315" src="https://youtu.be/uOJv1TJQAyAI" frameborder="0" allowfullscreen></iframe>-->
 
 <br>
 
