@@ -5,8 +5,8 @@
 [![License](https://img.shields.io/cocoapods/l/BSAutocomplete.svg?style=flat)](https://cocoapods.org/pods/BSAutocomplete)
 [![Platform](https://img.shields.io/cocoapods/p/BSAutocomplete.svg?style=flat)](https://cocoapods.org/pods/BSAutocomplete)
 
-BSAutocomplete provides easy-to-use and powerful autocomplete based on full screen UI for iOS.<br>
-With prefix you would like to such as '#', '@' or '$', whatever prefix you like, you can add autocomplete features into UITextView or UITextField to help users write better specific contents containing the prefix while writing any text. <br>
+BSAutocomplete provides easy-to-use and powerful autocomplete feature based on full screen UI for iOS.<br>
+With prefix you would like to such as '#', '@' or '$', whatever prefix you like, you can add autocomplete functionality into UITextView or UITextField to help users write better specific contents containing the prefix while writing any text. <br>
 
 BSAutocomplete is heavily used in ['All-Dayz'](https://itunes.apple.com/app/id1434294288) application.<br>
 
@@ -164,11 +164,9 @@ func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replace
 <b>That's all! Just enjoy BSAutocomplete! :)</b>
 <br>
 
-## ETC
-
-BSAutocomplete is built based on the Ramotion/reel-search project.<br>
-Ramotion/reel-search repository URL: https://github.com/Ramotion/reel-search<br>
-(reel-search in BSAutocomplete has been so customized slightly that it is different.)
+## Credits
+BSAutocomplete is built heavily based on ['Ramotion/reel-search'](https://github.com/Ramotion/reel-search) project for which reel-seach draws Core UI of BSAutocomplete.<br>
+(Mind that reel-search used in BSAutocomplete has been so customized slightly that it is different if you want to clone it.)
 
 ## Installation
 
