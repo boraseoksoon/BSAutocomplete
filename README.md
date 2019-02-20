@@ -8,10 +8,12 @@
 BSAutocomplete provides easy-to-use and powerful autocomplete based on full screen UI for iOS.
 
 <br>
-[![BSAutocomplete](https://media.giphy.com/media/bE3Olvp3azcW8qxAJu/giphy.gif)](https://www.youtube.com/watch?v=uOJv1TJQAyA)
+<img src="https://media.giphy.com/media/bE3Olvp3azcW8qxAJu/giphy.gif" width=240>
+<img src="https://media.giphy.com/media/5YfdI7NQBhtU9LNZeF/giphy.gif" width=240>
 
-<!--[![Video Label](https://media.giphy.com/media/bE3Olvp3azcW8qxAJu/giphy.gif)](https://youtu.be/l_FbmPHrbBI)-->
-<!--[![Video Label](https://media.giphy.com/media/5YfdI7NQBhtU9LNZeF/giphy.gif)](https://youtu.be/uOJv1TJQAyAI)-->
+<iframe width="420" height="315" src="https://youtu.be/l_FbmPHrbBI" frameborder="0" allowfullscreen></iframe>
+<iframe width="420" height="315" src="https://youtu.be/uOJv1TJQAyAI" frameborder="0" allowfullscreen></iframe>
+
 <br>
 
 ## Example
