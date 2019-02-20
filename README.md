@@ -7,16 +7,20 @@
 
 BSAutocomplete provides easy-to-use and powerful autocomplete based on full screen UI for iOS.
 
+<img src="https://firebasestorage.googleapis.com/v0/b/dayz-dev.appspot.com/o/bsautocomplete_screenshot.png?alt=media&token=aae319a9-2a58-4a2e-822f-3153a6f34ecd" width=640>
+
+
+GIF: 
 <br>
 <img src="https://media.giphy.com/media/bE3Olvp3azcW8qxAJu/giphy.gif" width=240>
 <img src="https://media.giphy.com/media/5YfdI7NQBhtU9LNZeF/giphy.gif" width=240>
 
+Video URL Link:
+[a link](https://www.youtube.com/watch?v=l_FbmPHrbBI)
+[a link](https://www.youtube.com/watch?v=uOJv1TJQAyA)
+ 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/l_FbmPHrbBI/0.jpg)](https://www.youtube.com/watch?v=l_FbmPHrbBI)
-
-[![Alt text](https://img.youtube.com/vi/VID/0.jpg)](https://www.youtube.com/watch?v=VID)
-
-<!--<iframe width="420" height="315" src="https://youtu.be/l_FbmPHrbBI" frameborder="0" allowfullscreen></iframe>-->
-<!--<iframe width="420" height="315" src="https://youtu.be/uOJv1TJQAyAI" frameborder="0" allowfullscreen></iframe>-->
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/uOJv1TJQAyA/0.jpg)](https://www.youtube.com/watch?v=uOJv1TJQAyA)
 
 <br>
 
