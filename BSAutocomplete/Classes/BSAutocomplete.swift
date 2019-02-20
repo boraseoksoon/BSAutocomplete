@@ -19,21 +19,7 @@ public class BSAutocomplete: UIView {
   // MARK: - Instance Variables -
   private var dataSource: SimplePrefixQueryDataSource!
   private var ramReel: RAMReel<RAMCell, RAMTextField, SimplePrefixQueryDataSource>!
-  private var localTextView: UITextView? {
-    didSet {
-      print("textViewText : ", localTextView?.text)
-    }
-  }
-  
-  private var localTextField: UITextField? {
-    didSet {
-      print("textFieldText : ", localTextField?.text)
-    }
-  }
-  
-  @objc func textFieldDidChange(_ textField: UITextField) {
-    print("[in autocomplete] plain : ", textField.text ?? "")
-  }
+  private var baseView: UIView?
   
   // MARK: - Initializers  -
   required init?(coder aDecoder: NSCoder) {
@@ -45,11 +31,9 @@ public class BSAutocomplete: UIView {
     
     switch focusView {
     case .textView(let textView):
-      localTextView = textView
       initialization(at: textView, data: data)
 
     case .textField(let textField):
-      localTextField = textField
       initialization(at: textField, data: data)
     }
   }
@@ -67,18 +51,29 @@ public class BSAutocomplete: UIView {
 
 // MARK: - Own Methods -
 extension BSAutocomplete {
-  public func receive(currentUserInput: String) -> Void {
-    if currentUserInput == HASH_TAG_STR {
-      self.ramReel.textField.text = HASH_TAG_STR
+  private func refresh(with string: String) -> Void {
+    self.ramReel.textField.text = string
+    self.ramReel.dataFlow.transport(string)
+    if string == HASH_TAG_STR {
       self.ramReel.view.isHidden = false
     } else {
-      self.ramReel.textField.text = ""
       self.ramReel.view.isHidden = true
     }
   }
   
+  public func receive(currentUserInput: String) -> Void {
+    self.refresh(with: currentUserInput)
+  }
+  
+  public func readyToUse() -> Void {
+    baseView?.addSubview(ramReel.view)
+    ramReel.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+  }
+  
   private func initialization(at focusView: UIView, data: [String]) -> Void {
     guard let baseView = FindBaseView(from: focusView) else { print("**ERROR**"); return }
+
+    self.baseView = baseView
     
     dataSource = SimplePrefixQueryDataSource(data)
     
@@ -88,17 +83,14 @@ extension BSAutocomplete {
                       attemptToDodgeKeyboard: true) {
                         print("Plain:", $0)
     }
+    ramReel.view.isHidden = true
     
     ramReel.hooks.append {
       let r = Array($0.reversed())
       let j = String(r)
       print("Reversed:", j)
     }
-    
-    baseView.addSubview(ramReel.view)
-    ramReel.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-    
-    ramReel.view.isHidden = true
+
   }
 }
 
@@ -112,20 +104,3 @@ func Delay(_ delaySeconds: Double, completion: @escaping () -> Void) -> Void {
     completion()
   }
 }
-
-extension UITextView {
-  public var currentWord : String? {
-    let beginning = beginningOfDocument
-    if let start = position(from: beginning, offset: selectedRange.location),
-      let end = position(from: start, offset: selectedRange.length) {
-      
-      let textRange = tokenizer.rangeEnclosingPosition(end, with: .word, inDirection: 1)
-      
-      if let textRange = textRange {
-        return text(in: textRange)
-      }
-    }
-    return nil
-  }
-}
-
