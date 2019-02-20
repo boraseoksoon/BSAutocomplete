@@ -1,5 +1,4 @@
 import XCTest
-import BSAutocomplete
 
 class Tests: XCTestCase {
     

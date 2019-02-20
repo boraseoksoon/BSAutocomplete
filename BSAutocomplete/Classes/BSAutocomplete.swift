@@ -9,7 +9,11 @@
 import UIKit
 
 let HASH_TAG_STR = "#"
+let SEARCH_BLUR_ANIMATION_DURATION = 0.4
 
+/**
+ * To allow only two type, either UITextView or UITextField, use Either type.
+ */
 public enum Either<T1: UITextView, T2: UITextField> {
   case textView(T1)
   case textField(T2)
@@ -51,17 +55,37 @@ public class BSAutocomplete: UIView {
 
 // MARK: - Own Methods -
 extension BSAutocomplete {
+  private func animateSearch(isShow: Bool) -> Void {
+    if isShow {
+      UIView.animate(withDuration: SEARCH_BLUR_ANIMATION_DURATION) {
+        self.ramReel.textField.becomeFirstResponder()
+      }
+    }
+      
+    else {
+      UIView.animate(withDuration: SEARCH_BLUR_ANIMATION_DURATION) {
+        self.ramReel.textField.resignFirstResponder()
+      }
+    }
+  }
+
+  
   private func refresh(with string: String) -> Void {
     self.ramReel.textField.text = string
     self.ramReel.dataFlow.transport(string)
     if string == HASH_TAG_STR {
       self.ramReel.view.isHidden = false
+//      self.ramReel.collectionView.backgroundColor = UIColor.black
+//      self.ramReel.collectionView.alpha = 1.0
     } else {
       self.ramReel.view.isHidden = true
+//      self.ramReel.collectionView.backgroundColor = UIColor.clear
+//      self.ramReel.collectionView.alpha = 0.0
     }
   }
   
   public func receive(currentUserInput: String) -> Void {
+    self.ramReel.textField.becomeFirstResponder()
     self.refresh(with: currentUserInput)
   }
   

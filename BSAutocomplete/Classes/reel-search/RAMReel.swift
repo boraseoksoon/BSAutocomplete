@@ -264,7 +264,7 @@ open class RAMReel
             "textField": textField
         ]
         
-      self.keyboardCallbackWrapper = NotificationCallbackWrapper(name: NSNotification.Name.UIKeyboardWillChangeFrame.rawValue)
+        self.keyboardCallbackWrapper = NotificationCallbackWrapper(name: UIResponder.keyboardWillChangeFrameNotification.rawValue)
         
         returnTarget  = TextFieldTarget()
         gestureTarget = GestureTarget()
@@ -304,9 +304,9 @@ open class RAMReel
             guard let `self` = self else { return }
             
             if let userInfo = (notification as NSNotification).userInfo as! [String: AnyObject]?,
-              let endFrame   = userInfo[UIKeyboardFrameEndUserInfoKey]?.cgRectValue,
-              let animDuration: TimeInterval = userInfo[UIKeyboardAnimationDurationUserInfoKey]?.doubleValue,
-              let animCurveRaw = userInfo[UIKeyboardAnimationCurveUserInfoKey]?.uintValue {
+                let endFrame   = userInfo[UIResponder.keyboardFrameEndUserInfoKey]?.cgRectValue,
+                let animDuration: TimeInterval = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey]?.doubleValue,
+                let animCurveRaw = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey]?.uintValue {
                 
                 if (attemptToDodgeKeyboard) {
                     let animCurve = UIView.AnimationOptions(rawValue: UInt(animCurveRaw))

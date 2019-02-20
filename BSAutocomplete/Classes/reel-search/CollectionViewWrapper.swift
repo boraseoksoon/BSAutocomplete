@@ -88,8 +88,8 @@ open class CollectionViewWrapper
     let collectionLayout = RAMCollectionViewLayout()
     let scrollDelegate: ScrollViewDelegate
     
-  let rotationWrapper = NotificationCallbackWrapper(name: NSNotification.Name.UIDeviceOrientationDidChange.rawValue, object: UIDevice.current)
-  let keyboardWrapper = NotificationCallbackWrapper(name: NSNotification.Name.UIKeyboardDidChangeFrame.rawValue)
+    let rotationWrapper = NotificationCallbackWrapper(name: UIDevice.orientationDidChangeNotification.rawValue, object: UIDevice.current)
+    let keyboardWrapper = NotificationCallbackWrapper(name: UIResponder.keyboardDidChangeFrameNotification.rawValue)
     
     var theme: Theme
     
@@ -182,7 +182,7 @@ open class CollectionViewWrapper
     // MARK: Update & Adjust
     
     func updateOffset(_ notification: Notification? = nil) {
-      let durationNumber = (notification as NSNotification?)?.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber
+        let durationNumber = (notification as NSNotification?)?.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber
         let duration = durationNumber?.doubleValue ?? 0.1
         
         UIView.animate(withDuration: duration, animations: {
