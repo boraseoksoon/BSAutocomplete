@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		47CC471F221D21B5009936DE /* hashtags.txt in Resources */ = {isa = PBXBuildFile; fileRef = 47CC471E221D21B5009936DE /* hashtags.txt */; };
+		47CC471F221D21B5009936DE /* data.txt in Resources */ = {isa = PBXBuildFile; fileRef = 47CC471E221D21B5009936DE /* data.txt */; };
 		47CC4721221D2206009936DE /* WordReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CC4720221D2206009936DE /* WordReader.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -33,7 +33,7 @@
 		06CAAF859205436637A7255C /* BSAutocomplete.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BSAutocomplete.podspec; path = ../BSAutocomplete.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		101B9BD1FD6970572A5E2202 /* Pods_BSAutocomplete_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BSAutocomplete_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BB8591AF22025C4D2F92FE7 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		47CC471E221D21B5009936DE /* hashtags.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = hashtags.txt; sourceTree = "<group>"; };
+		47CC471E221D21B5009936DE /* data.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = data.txt; sourceTree = "<group>"; };
 		47CC4720221D2206009936DE /* WordReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordReader.swift; sourceTree = "<group>"; };
 		55FA36AE93FF89EAD638EFD7 /* Pods-BSAutocomplete_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BSAutocomplete_Example.release.xcconfig"; path = "Target Support Files/Pods-BSAutocomplete_Example/Pods-BSAutocomplete_Example.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* BSAutocomplete_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BSAutocomplete_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,7 +133,7 @@
 			children = (
 				47CC4720221D2206009936DE /* WordReader.swift */,
 				607FACD41AFB9204008FA782 /* Info.plist */,
-				47CC471E221D21B5009936DE /* hashtags.txt */,
+				47CC471E221D21B5009936DE /* data.txt */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -255,7 +255,7 @@
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
-				47CC471F221D21B5009936DE /* hashtags.txt in Resources */,
+				47CC471F221D21B5009936DE /* data.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

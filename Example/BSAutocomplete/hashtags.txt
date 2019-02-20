@@ -1,9 +1,0 @@
-#Swift
-#Objective-C
-#Scala
-#Kotlin
-#C
-#Javascript
-#Python
-#Clojure
-#C#

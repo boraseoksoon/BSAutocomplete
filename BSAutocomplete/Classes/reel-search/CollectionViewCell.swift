@@ -72,7 +72,7 @@ open class RAMCell: UICollectionViewCell, ConfigurableCell {
     func updateFont() {
         let theme = self.theme
         textLabel.font = theme.font
-        textLabel.textColor = theme.textColor.withAlphaComponent(0.3)
+        textLabel.textColor = theme.textColor.withAlphaComponent(TEXT_COLOR_PLACEHOLDER_ALPHA)
     }
     
     fileprivate func setup() {

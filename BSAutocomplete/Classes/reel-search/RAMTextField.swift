@@ -27,7 +27,7 @@ open class RAMTextField: UITextField {
         let rect = self.bounds
         let ctx = UIGraphicsGetCurrentContext()
         
-        let lineColor = self.tintColor.withAlphaComponent(0.3)
+        let lineColor = self.tintColor.withAlphaComponent(TEXT_COLOR_PLACEHOLDER_ALPHA)
         lineColor.set()
         
         ctx?.setLineWidth(1)
