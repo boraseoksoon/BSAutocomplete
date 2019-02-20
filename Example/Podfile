@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'BSAutocomplete_Example' do
+  pod 'BSAutocomplete', :path => '../'
+
+  target 'BSAutocomplete_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
