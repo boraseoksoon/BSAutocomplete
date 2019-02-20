@@ -1,0 +1,16 @@
+PODS:
+  - BSAutocomplete (0.1.0)
+
+DEPENDENCIES:
+  - BSAutocomplete (from `../`)
+
+EXTERNAL SOURCES:
+  BSAutocomplete:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  BSAutocomplete: e5647509babf74341e23e9b3f3f427490b352ea2
+
+PODFILE CHECKSUM: 64aa5d05c5695efb695a295d4b821c652e33a819
+
+COCOAPODS: 1.6.0

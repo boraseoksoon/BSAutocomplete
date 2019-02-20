@@ -9,16 +9,40 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+  // MARK: - IBOutlets and IBActions -
+  @IBOutlet var titleTextField: UITextField!
+  @IBOutlet var contentsTextView: UITextView! {
+    didSet {
+      contentsTextView.layer.borderColor = UIColor.black.cgColor
+      contentsTextView.layer.borderWidth = 0.25
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+  }
+  
+  // MARK: - ViewController LifeCycle Methods -
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    // Do any additional setup after loading the view, typically from a nib.
+  }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
+  
 }
+
+fileprivate let hashtags: [String] = {
+  do {
+    guard let dataPath = Bundle.main.path(forResource: "hashtags", ofType: "txt") else {
+      return []
+    }
+    
+    let data = try WordReader(filepath: dataPath)
+    return data.words
+  }
+  catch let error {
+    print(error)
+    return []
+  }
+}()
 
