@@ -37,7 +37,7 @@ Swift 4.2 + <br>
 ## How to use
 
 <b>Step 0. import BSAutocomplete</b>
-<br>
+<br><br>
 
 ```Swift
 import BSAutocomplete
@@ -49,7 +49,7 @@ import BSAutocomplete
 Declare and create instance as an instance variable as below.
 <br>
 BSAutocomplete is only supported in a programmatical way.
-<br>
+<br><br>
 
 ```Swift
 /**
@@ -74,7 +74,7 @@ private lazy var autocomplete: BSAutocomplete = { [unowned self] in
 <b>Step 1. declare BSAutocomplete's delegate in order to keep track of events that will be given by BSAutocomplete at the certain circumstances.</b>
 <br>
 You will be able to assume when to be invoked by looking over the naming of delegate methods. 
-<br>
+<br><br>
 
 ```Swift
 extension ViewController: BSAutocompleteDelegate {
@@ -101,7 +101,7 @@ extension ViewController: BSAutocompleteDelegate {
 <b>Step 2. In viewDidLoad, apply readyToUse() method to get ready to show BSAutocomplete.</b>
 <br>
 It must be done before the use. Do it just as below.  
-<br>
+<br><br>
 
 ```Swift
 override func viewDidLoad() {
@@ -119,10 +119,10 @@ override func viewDidLoad() {
 <br>
 <b>Step 3. add the code below to keep track of observing a current text being typed.</b>
 <br>
-Apply the below API to observe the text being input. 
-Put a one of string being typed latest into currentUserInput parameter along with which you also need to provide an instance where text input is being input, wrapped by Either type provided by the library, which is either UITextfield or UITextView. 
+Apply the below API to observe the text being input.<br>
+Put a one of string being typed latest into currentUserInput parameter along with which you also need to provide an instance where text input is being input, wrapped by Either type provided by the library, which is either UITextfield or UITextView.<br>
 You must need to use this API. Otherwise, an instance of BSAutocomplete has no chance to become visible. 
-<br>
+<br><br>
 
 ```Swift
 // MARK: - UITextFieldDelegate Methods -
@@ -150,19 +150,19 @@ func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replace
 
 ```
 
-<br>
+<br><br>
 <b>That's all! Just enjoy BSAutocomplete! :)</b>
 <br>
 
 ## ETC
 
-BSAutocomplete is built based on the Ramotion/reel-search project.
-Ramotion/reel-search repository URL: https://github.com/Ramotion/reel-search
+BSAutocomplete is built based on the Ramotion/reel-search project.<br>
+Ramotion/reel-search repository URL: https://github.com/Ramotion/reel-search<br>
 (reel-search in BSAutocomplete has been so customized slightly that it is different.)
 
 ## Installation
 
-We recommend using CocoaPods to install the library.
+We recommend using CocoaPods to install the library.<br>
 BSAutocomplete is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
