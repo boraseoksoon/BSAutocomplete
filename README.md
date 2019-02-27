@@ -8,25 +8,20 @@
 BSAutocomplete provides easy-to-use and powerful autocomplete feature based on full screen UI for iOS.<br>
 With prefix you would like to such as '#', '@' or '$', whatever prefix you like, you can add autocomplete functionality into UITextView or UITextField to help users write better specific contents containing the prefix while writing any text. <br>
 
-BSAutocomplete is heavily used in ['All-Dayz'](https://itunes.apple.com/app/id1434294288) application.<br>
-
-It's like in 'All Dayz': <br>
-<img src="https://firebasestorage.googleapis.com/v0/b/dayz-dev.appspot.com/o/alldayz_screenshot.png?alt=media&token=eb5a5d25-d29c-4780-99af-48e05b784c6f" width=320>
+<img src="https://media.giphy.com/media/bE3Olvp3azcW8qxAJu/giphy.gif" width=240>
 <br>
 
 It's like in this example project: <br>
 <img src="https://firebasestorage.googleapis.com/v0/b/dayz-dev.appspot.com/o/bsautocomplete_screenshot.png?alt=media&token=aae319a9-2a58-4a2e-822f-3153a6f34ecd" width=240>
 <br>
 
-GIF: 
-<br>
-<img src="https://media.giphy.com/media/bE3Olvp3azcW8qxAJu/giphy.gif" width=240>
+BSAutocomplete is heavily used in ['All-Dayz'](https://itunes.apple.com/app/id1434294288) application.<br>
+It's like in 'All Dayz': <br>
+<img src="https://firebasestorage.googleapis.com/v0/b/dayz-dev.appspot.com/o/alldayz_screenshot.png?alt=media&token=eb5a5d25-d29c-4780-99af-48e05b784c6f" width=320>
 <br>
 
 Youtube video URL Link for how it works: <br>
-[a link00](https://www.youtube.com/watch?v=l_FbmPHrbBI)
-<br>
-[a link01](https://www.youtube.com/watch?v=uOJv1TJQAyA)
+[link0](https://www.youtube.com/watch?v=l_FbmPHrbBI), [link1](https://www.youtube.com/watch?v=uOJv1TJQAyA)
 
 <!--[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/l_FbmPHrbBI/0.jpg)](https://www.youtube.com/watch?v=l_FbmPHrbBI)-->
 <!--<br>-->
@@ -165,7 +160,7 @@ func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replace
 <br>
 
 ## Credits
-BSAutocomplete is built heavily based on ['Ramotion/reel-search'](https://github.com/Ramotion/reel-search) project for which reel-seach draws Core UI of BSAutocomplete.<br>
+BSAutocomplete is built heavily based on ['Ramotion/reel-search'](https://github.com/Ramotion/reel-search) that draws Core UI of BSAutocomplete.<br>
 (Mind that reel-search used in BSAutocomplete has been so customized slightly that it is different if you want to clone it.)
 
 ## Installation
