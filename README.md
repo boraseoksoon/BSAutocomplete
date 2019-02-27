@@ -5,18 +5,17 @@
 [![License](https://img.shields.io/cocoapods/l/BSAutocomplete.svg?style=flat)](https://cocoapods.org/pods/BSAutocomplete)
 [![Platform](https://img.shields.io/cocoapods/p/BSAutocomplete.svg?style=flat)](https://cocoapods.org/pods/BSAutocomplete)
 
-BSAutocomplete provides easy-to-use and powerful autocomplete feature based on full screen UI for iOS.<br>
-With prefix you would like to such as '#', '@' or '$', whatever prefix you like, you can add autocomplete functionality into UITextView or UITextField to help users write better specific contents containing the prefix while writing any text. <br>
+BSAutocomplete provides easy-to-use and powerful autocomplete feature based on the full screen experience.<br>
+With prefix you would like to such as '#', '@' or '$', you can inject stylish full-screen autocomplete functionality into UITextView or UITextField so as to help users better find and write specific contents containing the prefix while typing.<br>
 
 <img src="https://media.giphy.com/media/bE3Olvp3azcW8qxAJu/giphy.gif" width=240>
-<br>
 
 It's like in this example project: <br>
 <img src="https://firebasestorage.googleapis.com/v0/b/dayz-dev.appspot.com/o/bsautocomplete_screenshot.png?alt=media&token=aae319a9-2a58-4a2e-822f-3153a6f34ecd" width=240>
 <br>
 
-BSAutocomplete is heavily used in ['All-Dayz'](https://itunes.apple.com/app/id1434294288) application.<br>
-It's like in 'All Dayz': <br>
+BSAutocomplete is heavily used in ['All DAYZ'](https://itunes.apple.com/app/id1434294288) application.<br>
+It's like in 'ALL DAYZ': <br>
 <img src="https://firebasestorage.googleapis.com/v0/b/dayz-dev.appspot.com/o/alldayz_screenshot.png?alt=media&token=eb5a5d25-d29c-4780-99af-48e05b784c6f" width=320>
 <br>
 
