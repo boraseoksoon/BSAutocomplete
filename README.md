@@ -9,7 +9,6 @@ BSAutocomplete provides easy-to-use and powerful autocomplete feature based on t
 With prefix you would like to such as '#', '@' or '$', you can inject stylish full-screen autocomplete functionality into UITextView or UITextField so as to help users better find and write specific contents containing the prefix while typing.<br>
 
 <img src="https://media.giphy.com/media/bE3Olvp3azcW8qxAJu/giphy.gif" width=320>
-<img src="https://media.giphy.com/media/kigT3kUtaMGwtLK2gJ/giphy.gif" width=320>
 
 It's like in this example project: <br>
 <img src="https://firebasestorage.googleapis.com/v0/b/dayz-dev.appspot.com/o/bsautocomplete_screenshot.png?alt=media&token=aae319a9-2a58-4a2e-822f-3153a6f34ecd" width=240>
@@ -23,11 +22,6 @@ It's like in 'ALL DAYZ': <br>
 Youtube video URL Link for how it works: <br>
 [link0](https://www.youtube.com/watch?v=l_FbmPHrbBI), [link1](https://www.youtube.com/watch?v=uOJv1TJQAyA)
 
-<!--[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/l_FbmPHrbBI/0.jpg)](https://www.youtube.com/watch?v=l_FbmPHrbBI)-->
-<!--<br>-->
-<!--[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/uOJv1TJQAyA/0.jpg)](https://www.youtube.com/watch?v=uOJv1TJQAyA)-->
-
-<br>
 <br>
 
 ## Example
