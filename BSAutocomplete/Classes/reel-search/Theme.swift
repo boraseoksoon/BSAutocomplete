@@ -54,7 +54,7 @@ public struct RAMTheme: Theme {
   public let listBackgroundColor: UIColor
   
   fileprivate init(
-    textColor: UIColor = UIColor.black,
+    textColor: UIColor = UIColor.red,
     listBackgroundColor: UIColor = UIColor.clear,
     font: UIFont = RAMTheme.defaultFont
     )

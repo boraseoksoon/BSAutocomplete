@@ -8,11 +8,19 @@
 
 import UIKit
 
+// MARK: - Enum -
+public enum Prefix: String {
+  case at = "@"
+  case hash = "#"
+  case cash = "$"
+  case none = ""
+}
+
 // MARK: - Constants -
 let ANIMATION_DURATION = 0.7
 let TEXT_COLOR_PLACEHOLDER_ALPHA: CGFloat = 0.45
 let TEXT_COLOR_FOCUS_ALPHA: CGFloat = 0.9
-let SHOW_ALPHA: CGFloat = 0.35
+let SHOW_ALPHA: CGFloat = 0.5
 let HIDE_ALPHA:CGFloat = 0.0
 
 /**
@@ -38,6 +46,61 @@ public protocol BSAutocompleteDelegate: NSObjectProtocol {
 /**
  * Class
  */
+
+// MARK: - UITextFieldDelegate Methods -
+extension BSAutocomplete: UITextFieldDelegate {
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        /**
+         * Must apply this API to keep track of the text being written.
+         */
+            print("call1? : ", string)
+        self.observe(currentUserInput: string, from: .textField(textField))
+        return true
+    }
+    
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.isFirstResponder {
+          textField.resignFirstResponder()
+        }
+        
+        return true
+    }
+    
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
+        print("textFieldDidBeginEditing in ac!!")
+        
+        if self.prefix == Prefix.none.rawValue {
+            self.observe(currentUserInput: textField.text ?? "", from: .textField(textField))
+        }
+    }
+}
+
+// MARK: - UITextViewDelegate Methods -
+extension BSAutocomplete: UITextViewDelegate {
+    public func textViewDidChange(_ textView: UITextView) {
+        print("textViewDidChange!!")
+    }
+    
+    public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        /**
+         * Must apply this API to keep track of the text being written.
+         */
+        print("call? : ", text)
+        self.observe(currentUserInput: text, from: .textView(textView))
+        
+        /// keyboard down logic
+        if(text == "\n") {
+          if textView.isFirstResponder {
+            textView.resignFirstResponder()
+          }
+          return false
+        }
+        
+        return true
+    }
+}
+
+
 // MARK: - BSAutocomplete Class -
 public class BSAutocomplete: UIView {
     // MARK: - Delegate -
@@ -54,7 +117,7 @@ public class BSAutocomplete: UIView {
   }
   private var backgroundAlphaView: TouchPassThroughView = {
     let v = TouchPassThroughView(frame: .zero)
-    v.backgroundColor = .darkGray
+    v.backgroundColor = .black
     v.alpha = 0.0
     
     return v
@@ -77,14 +140,46 @@ public class BSAutocomplete: UIView {
     fatalError("creating instance programatically is not allowed!")
   }
   
-  public init(basedOn: UIView, prefix: String, data: [String]) {
-    super.init(frame: UIScreen.main.bounds)
-    
-    self.prefix = prefix
-    self.data = data
-    
-    self.initialization(at: basedOn, data: data)
-  }
+    public init(baseView: UIView? = nil,
+                prefix: String = Prefix.at.rawValue,
+                observedViewList: [Either<UITextView, UITextField>],
+                autoCompleteList: [String]) {
+        super.init(frame: UIScreen.main.bounds)
+        
+        observedViewList.forEach { either in
+            switch either {
+            case .textView(let textView):
+                textView.delegate = self
+            case .textField(let textField):
+                textField.delegate = self
+            }
+        }
+
+        self.prefix = prefix
+        self.data = autoCompleteList
+        
+        var resolvedBaseView: UIView? = baseView
+        
+        // To guarantee the first VC initialization.
+        Delay(0.25) {
+            if baseView == nil {
+                if let superview = self.superview {
+                    resolvedBaseView = superview
+                } else {
+
+                    if let baseView = GetRootViewController()?.view {
+                        resolvedBaseView = baseView
+                    }
+                }
+            }
+            
+            if let resolvedBaseView = resolvedBaseView {
+                self.initialization(at: resolvedBaseView, data: self.data)
+            } else {
+                fatalError("can't find baseView in BSAutocomplete constructor, which is mandatory.")
+            }
+        }
+    }
 
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -94,28 +189,6 @@ public class BSAutocomplete: UIView {
 
 // MARK: - Public Own Methods -
 extension BSAutocomplete {
-  public func observe(currentUserInput: String, from: Either<UITextView, UITextField>) -> Void {
-    either = from
-    
-    if currentUserInput == self.prefix {
-      if !self.ramReel.textField.isFirstResponder {
-        self.show(with: currentUserInput)
-      }
-    } else {
-      if self.ramReel.textField.isFirstResponder {
-        self.hide()
-      }
-    }
-  }
-  
-  public func readyToUse() -> Void {
-    guard let baseView = baseView else { PRETTY(); return }
-    
-    baseView.addSubview(ramReel.view)
-    baseView.addSubview(backgroundAlphaView)
-    ramReel.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-  }
-  
   public func set(textColor: UIColor) -> Void {
     self.ramReel.textField.textColor = textColor
   }
@@ -133,6 +206,21 @@ extension BSAutocomplete {
 
 // MARK: - Private Own Methods -
 extension BSAutocomplete {
+    private func observe(currentUserInput: String, from: Either<UITextView, UITextField>) -> Void {
+      either = from
+      
+      if currentUserInput == self.prefix {
+        if !self.ramReel.textField.isFirstResponder {
+          self.show(with: currentUserInput)
+        }
+      } else {
+        if self.ramReel.textField.isFirstResponder {
+          self.hide()
+        }
+      }
+    }
+
+    
   private func show(with text: String) -> Void {
     self.ramReel.textField.becomeFirstResponder()
     
@@ -171,6 +259,8 @@ extension BSAutocomplete {
     self.ramReel.dataFlow.transport("")
 
     self.delegate?.autoCompleteDidHide(sender: either)
+    
+    // self.baseView?.endEditing(true)
   }
   
   private func initialization(at focusView: UIView, data: [String]) -> Void {
@@ -189,6 +279,10 @@ extension BSAutocomplete {
     ramReel.collectionView.backgroundColor = backgroundColor
     
     self.addClosure()
+    
+    baseView.addSubview(ramReel.view)
+    baseView.addSubview(backgroundAlphaView)
+    ramReel.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
   }
   
   private func addClosure() -> Void {
@@ -216,11 +310,11 @@ extension BSAutocomplete {
         guard let either = self.either else { PRETTY(); return }
         self.delegate?.autoCompleteTextDidChange(text: fullInputText, sender: either)
 
-        MainQ {
-          if fullInputText == "" {
-            self.hide()
-          }
-        }
+//        MainQ {
+//          if fullInputText == "" {
+//            self.hide()
+//          }
+//        }
       }
     }
   }
@@ -247,56 +341,9 @@ extension BSAutocomplete {
   }
 }
 
-// MARK: - Functions -
-private func FindBaseView(from givenView: UIView?) -> UIView? {
-  return givenView?.superview == nil ?  givenView : FindBaseView(from: givenView?.superview)
+extension UIView {
+   func copyView<T: UIView>() -> T {
+        return NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: self)) as! T
+   }
 }
 
-private func PRETTY(file:String = #file, function:String = #function, line:Int = #line, reason: String = "none") {
-  print(">>>>>> GUARD!!")
-  #if DEBUG
-  print("file:\(file) function:\(function) line:\(line), reason : \(reason)")
-  #endif
-  print(">>>>>> GUARD!!")
-}
-
-// MARK: - Grand Central Dispatch Wrapper -
-private func MainQ(completion: @escaping () -> Void) {
-  DispatchQueue.main.async {
-    completion()
-  }
-}
-
-private func GlobalQ(completion: @escaping () -> Void) {
-  DispatchQueue.global().async {
-    completion()
-  }
-}
-
-private let serialQueue = DispatchQueue(label: "queue.search.dayz")
-private func SerialQ(completion: @escaping () -> Void) {
-  serialQueue.async {
-    completion()
-  }
-}
-
-private func Delay(_ delaySeconds: Double, completion: @escaping () -> Void) -> Void {
-  DispatchQueue.main.asyncAfter(deadline: .now() + delaySeconds) {
-    completion()
-  }
-}
-
-private class TouchPassThroughView: UIView {
-  override open func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-    for subview in  subviews {
-      if !subview.isHidden && subview.alpha > 0 && subview.isUserInteractionEnabled && subview.point(inside: convert(point, to: subview), with: event) {
-        return true
-      }
-    }
-    return false
-  }
-  
-  override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    print("EventPassThroughView touched?")
-  }
-}

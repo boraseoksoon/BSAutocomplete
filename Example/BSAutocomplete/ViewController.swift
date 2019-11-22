@@ -44,12 +44,12 @@ class ViewController: UIViewController {
       // $
       prefix = Prefix.cash
     default:
-      break
+      prefix = Prefix.none
     }
   }
   
   // MARK: - Instance Variables -
-  private var prefix: Prefix = Prefix.at {
+  private var prefix: Prefix = Prefix.none {
     didSet {
       /// change prefix to filter of BSAutocomplete's instance.
       print("change prefix to filter of BSAutocomplete's instance : \(prefix.rawValue)!")
@@ -67,64 +67,6 @@ class ViewController: UIViewController {
       }
     }
   }
-
-  /// Test input text from data.txt file in the main bundle(Supporting Files directory)
-  /**
-   TEST INPUT:
-   
-   #Swift
-   #Objective-C
-   #Scala
-   #Kotlin
-   #C
-   #Javascript
-   #Python
-   #Clojure
-   #C#
-   #Scheme
-   #C++
-   #COBOL
-   
-   @Haskell
-   @Lisp
-   @Ocalm
-   @Rust
-   @SmallTalk
-   @Java
-   @Ruby
-   @Parscal
-   @Perl
-   @PHP
-   @Assembly
-   @ADA
-   @Groovy
-   @Go
-   @F#
-   @Fotran
-   
-   $1
-   $2
-   $4
-   $8
-   $16
-   $32
-   $64
-   $128
-   $256
-   $10
-   $100
-   $111
-   $112
-   $113
-   $1000
-   $1000
-   $10000
-   $20
-   $200
-   $2000
-   $2000
-   $20000
-   */
   
   fileprivate let hashtags: [String] = {
     do {
@@ -140,20 +82,15 @@ class ViewController: UIViewController {
       return []
     }
   }()
-  
-  private enum Prefix: String {
-    case at = "@"
-    case hash = "#"
-    case cash = "$"
-  }
-  
+ 
   /**
    * Creating BSAutocomplete instance..
    */
   private lazy var autocomplete: BSAutocomplete = { [unowned self] in
-    let autocomplete = BSAutocomplete(basedOn: self.view,
-                                      prefix: Prefix.at.rawValue,
-                                      data: hashtags)
+    let autocomplete = BSAutocomplete(observedViewList: [.textField(self.nicknameTextField),
+                                                         .textView(self.contentsTextView),
+                                                         .textField(self.titleTextField)],
+                                      autoCompleteList: hashtags)
     autocomplete.delegate = self
     
     return autocomplete
@@ -164,12 +101,8 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view, typically from a nib.
+    _ = self.autocomplete
     
-    /**
-     * Must apply this API in viewDidLoad or similar appropriate method time being called
-     * before the use of BSAutocomplete's instance.
-     */
-    autocomplete.readyToUse()
   }
   
   override func didReceiveMemoryWarning() {
@@ -181,7 +114,8 @@ class ViewController: UIViewController {
 
 // MARK: - Own methods -
 extension UIViewController {
-  func evaluateType(sender: Either<UITextView, UITextField>, complete: @escaping (_ either: Either<UITextView, UITextField>) -> Void) -> Void {
+  func evaluateType(sender: Either<UITextView, UITextField>,
+                    complete: @escaping (_ either: Either<UITextView, UITextField>) -> Void) -> Void {
     /// append additional empty space, " ".
     DispatchQueue.main.async {
       switch sender {
@@ -237,19 +171,23 @@ extension ViewController: BSAutocompleteDelegate {
 
 // MARK: - UITextFieldDelegate Methods -
 extension ViewController: UITextFieldDelegate {
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
+        print("textFieldDidBeginEditing in VC!")
+    }
+        
   func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
     /**
      * Must apply this API to keep track of the text being written.
      */
-    autocomplete.observe(currentUserInput: string, from: .textField(textField))
+    // autocomplete.observe(currentUserInput: string, from: .textField(textField))
     return true
   }
   
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     /// keyboard down logic
-    if textField.isFirstResponder {
-      textField.resignFirstResponder()
-    }
+//    if textField.isFirstResponder {
+//      textField.resignFirstResponder()
+//    }
     
     return true
   }
@@ -261,16 +199,74 @@ extension ViewController: UITextViewDelegate {
     /**
      * Must apply this API to keep track of the text being written.
      */
-    autocomplete.observe(currentUserInput: text, from: .textView(textView))
+    // autocomplete.observe(currentUserInput: text, from: .textView(textView))
     
     /// keyboard down logic
-    if(text == "\n") {
-      if textView.isFirstResponder {
-        textView.resignFirstResponder()
-      }
-      return false
-    }
+//    if(text == "\n") {
+//      if textView.isFirstResponder {
+//        textView.resignFirstResponder()
+//      }
+//      return false
+//    }
     
     return true
   }
 }
+
+/// Test input text from data.txt file in the main bundle(Supporting Files directory)
+/**
+ TEST INPUT:
+ 
+ #Swift
+ #Objective-C
+ #Scala
+ #Kotlin
+ #C
+ #Javascript
+ #Python
+ #Clojure
+ #C#
+ #Scheme
+ #C++
+ #COBOL
+ 
+ @Haskell
+ @Lisp
+ @Ocalm
+ @Rust
+ @SmallTalk
+ @Java
+ @Ruby
+ @Parscal
+ @Perl
+ @PHP
+ @Assembly
+ @ADA
+ @Groovy
+ @Go
+ @F#
+ @Fotran
+ 
+ $1
+ $2
+ $4
+ $8
+ $16
+ $32
+ $64
+ $128
+ $256
+ $10
+ $100
+ $111
+ $112
+ $113
+ $1000
+ $1000
+ $10000
+ $20
+ $200
+ $2000
+ $2000
+ $20000
+ */

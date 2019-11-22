@@ -1,5 +1,5 @@
 PODS:
-  - BSAutocomplete (0.1.0)
+  - BSAutocomplete (0.1.1)
 
 DEPENDENCIES:
   - BSAutocomplete (from `../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BSAutocomplete: 339ce3e61669bf5a2e31bfdf9dd2cc437af82c05
+  BSAutocomplete: 17cb3b4404ac0b4604a9884a14d27f109820853a
 
 PODFILE CHECKSUM: 64aa5d05c5695efb695a295d4b821c652e33a819
 
-COCOAPODS: 1.6.0
+COCOAPODS: 1.8.4
