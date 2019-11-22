@@ -141,7 +141,7 @@ public class BSAutocomplete: UIView {
   }
   
     public init(baseView: UIView? = nil,
-                prefix: String = Prefix.at.rawValue,
+                prefix: String = Prefix.none.rawValue,
                 observedViewList: [Either<UITextView, UITextField>],
                 autoCompleteList: [String]) {
         super.init(frame: UIScreen.main.bounds)
@@ -208,22 +208,32 @@ extension BSAutocomplete {
 extension BSAutocomplete {
     private func observe(currentUserInput: String, from: Either<UITextView, UITextField>) -> Void {
       either = from
-      
-      if currentUserInput == self.prefix {
-        if !self.ramReel.textField.isFirstResponder {
-          self.show(with: currentUserInput)
+        
+        if self.prefix == Prefix.none.rawValue {
+           if !self.ramReel.textField.isFirstResponder {
+             self.show(with: currentUserInput)
+           }
+        } else {
+            if currentUserInput == self.prefix {
+              if !self.ramReel.textField.isFirstResponder {
+                self.show(with: currentUserInput)
+              }
+            } else {
+              if self.ramReel.textField.isFirstResponder {
+                self.hide()
+              }
+            }
         }
-      } else {
-        if self.ramReel.textField.isFirstResponder {
-          self.hide()
-        }
-      }
     }
 
-    
   private func show(with text: String) -> Void {
-    self.ramReel.textField.becomeFirstResponder()
     
+    if self.ramReel.textField.canBecomeFirstResponder {
+        Delay(0.1) {
+            self.ramReel.textField.becomeFirstResponder()
+        }
+    }
+
     UIView.animate(withDuration: ANIMATION_DURATION, animations: {
       self.ramReel.view.isHidden = false
       self.backgroundAlphaView.alpha = SHOW_ALPHA
@@ -235,18 +245,11 @@ extension BSAutocomplete {
     
     guard let either = either else { PRETTY(); return }
     self.delegate?.autoCompleteDidShow(sender: either)
-    
   }
   
   private func hide() -> Void {
     guard let either = self.either else { PRETTY(); return }
-    switch either {
-    case .textView(let textView):
-      textView.becomeFirstResponder()
-      
-    case .textField(let textField):
-      textField.becomeFirstResponder()
-    }
+    self.ramReel.textField.resignFirstResponder()
     
     UIView.animate(withDuration: ANIMATION_DURATION, animations: {
       self.ramReel.view.isHidden = true
@@ -259,8 +262,6 @@ extension BSAutocomplete {
     self.ramReel.dataFlow.transport("")
 
     self.delegate?.autoCompleteDidHide(sender: either)
-    
-    // self.baseView?.endEditing(true)
   }
   
   private func initialization(at focusView: UIView, data: [String]) -> Void {
@@ -272,7 +273,7 @@ extension BSAutocomplete {
     
     ramReel = RAMReel(frame: baseView.bounds,
                       dataSource: dataSource,
-                      placeholder: "Start by typing…",
+                      placeholder: "Search..",
                       attemptToDodgeKeyboard: true)
 
     ramReel.view.isHidden = true
@@ -287,35 +288,22 @@ extension BSAutocomplete {
   
   private func addClosure() -> Void {
     self.ramReel.didTapClosure = { [unowned self] text in
-      GlobalQ {
-        // do something if needed.
-        MainQ {
-          guard let either = self.either else { PRETTY(); return }
-          switch either {
-          case .textView(let textView):
-            self.appendAtLast(from: .textView(textView), selectedItem: text)
-            
-          case .textField(let textField):
-            self.appendAtLast(from: .textField(textField), selectedItem: text)
-          }
-          
-          self.hide()
-          self.delegate?.autoCompleteDidChooseItem(text: text, sender: either)
-        }
+      guard let either = self.either else { PRETTY(); return }
+      switch either {
+      case .textView(let textView):
+        self.appendAtLast(from: .textView(textView), selectedItem: text)
+        
+      case .textField(let textField):
+        self.appendAtLast(from: .textField(textField), selectedItem: text)
       }
+      
+      self.hide()
+      self.delegate?.autoCompleteDidChooseItem(text: text, sender: either)
     }
     
     self.ramReel.didTypeSearchKeyword = { [unowned self] fullInputText in
-      GlobalQ {
         guard let either = self.either else { PRETTY(); return }
         self.delegate?.autoCompleteTextDidChange(text: fullInputText, sender: either)
-
-//        MainQ {
-//          if fullInputText == "" {
-//            self.hide()
-//          }
-//        }
-      }
     }
   }
   

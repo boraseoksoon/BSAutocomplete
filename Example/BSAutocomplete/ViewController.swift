@@ -13,7 +13,7 @@ class ViewController: UIViewController {
   // MARK: - IBOutlets and IBActions -
   @IBOutlet var titleTextField: UITextField! {
     didSet {
-      titleTextField.delegate = self
+//      titleTextField.delegate = self
     }
   }
   
@@ -21,13 +21,13 @@ class ViewController: UIViewController {
     didSet {
       contentsTextView.layer.borderColor = UIColor.black.cgColor
       contentsTextView.layer.borderWidth = 0.25
-      contentsTextView.delegate = self
+//      contentsTextView.delegate = self
     }
   }
   
   @IBOutlet var nicknameTextField: UITextField! {
     didSet {
-      nicknameTextField.delegate = self
+//      nicknameTextField.delegate = self
     }
   }
   
@@ -112,23 +112,6 @@ class ViewController: UIViewController {
   
 }
 
-// MARK: - Own methods -
-extension UIViewController {
-  func evaluateType(sender: Either<UITextView, UITextField>,
-                    complete: @escaping (_ either: Either<UITextView, UITextField>) -> Void) -> Void {
-    /// append additional empty space, " ".
-    DispatchQueue.main.async {
-      switch sender {
-      case .textView(let textView):
-        print("sender : \(textView)")
-        complete(sender)
-      case .textField(let textField):
-        print("sender : \(textField)")
-        complete(sender)
-      }
-    }
-  }
-}
 /**
  * Here is the delegate methods.
  */
@@ -137,7 +120,7 @@ extension ViewController: BSAutocompleteDelegate {
   func autoCompleteDidChooseItem(text: String, sender: Either<UITextView, UITextField>) -> Void {
     print("autoCompleteDidChooseItem : ", text)
     
-    self.evaluateType(sender: sender) { sender in
+    self.evaluateType(sender: sender) { [unowned self] sender in
       /**
        * User level logic to add the empty space at the end for convenience.
        */
@@ -169,49 +152,68 @@ extension ViewController: BSAutocompleteDelegate {
   }
 }
 
-// MARK: - UITextFieldDelegate Methods -
-extension ViewController: UITextFieldDelegate {
-    public func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("textFieldDidBeginEditing in VC!")
+// MARK: - Own methods -
+extension ViewController {
+  func evaluateType(sender: Either<UITextView, UITextField>,
+                    complete: @escaping (_ either: Either<UITextView, UITextField>) -> Void) -> Void {
+    /// append additional empty space, " ".
+    DispatchQueue.main.async {
+      switch sender {
+      case .textView(let textView):
+        print("sender : \(textView)")
+        complete(sender)
+      case .textField(let textField):
+        print("sender : \(textField)")
+        complete(sender)
+      }
     }
-        
-  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-    /**
-     * Must apply this API to keep track of the text being written.
-     */
-    // autocomplete.observe(currentUserInput: string, from: .textField(textField))
-    return true
-  }
-  
-  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    /// keyboard down logic
-//    if textField.isFirstResponder {
-//      textField.resignFirstResponder()
-//    }
-    
-    return true
   }
 }
 
-// MARK: - UITextViewDelegate Methods -
-extension ViewController: UITextViewDelegate {
-  func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-    /**
-     * Must apply this API to keep track of the text being written.
-     */
-    // autocomplete.observe(currentUserInput: text, from: .textView(textView))
-    
-    /// keyboard down logic
-//    if(text == "\n") {
-//      if textView.isFirstResponder {
-//        textView.resignFirstResponder()
-//      }
-//      return false
+
+// MARK: - UITextFieldDelegate Methods -
+//extension ViewController: UITextFieldDelegate {
+//    public func textFieldDidBeginEditing(_ textField: UITextField) {
+//        print("textFieldDidBeginEditing in VC!")
 //    }
-    
-    return true
-  }
-}
+//
+//  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//    /**
+//     * Must apply this API to keep track of the text being written.
+//     */
+//    // autocomplete.observe(currentUserInput: string, from: .textField(textField))
+//    return true
+//  }
+//
+//  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//    /// keyboard down logic
+////    if textField.isFirstResponder {
+////      textField.resignFirstResponder()
+////    }
+//
+//    return true
+//  }
+//}
+
+// MARK: - UITextViewDelegate Methods -
+//extension ViewController: UITextViewDelegate {
+//  func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+//    /**
+//     * Must apply this API to keep track of the text being written.
+//     */
+//    // autocomplete.observe(currentUserInput: text, from: .textView(textView))
+//
+//    /// keyboard down logic
+////    if(text == "\n") {
+////      if textView.isFirstResponder {
+////        textView.resignFirstResponder()
+////      }
+////      return false
+////    }
+//
+//    return true
+//  }
+//}
 
 /// Test input text from data.txt file in the main bundle(Supporting Files directory)
 /**
@@ -270,3 +272,4 @@ extension ViewController: UITextViewDelegate {
  $2000
  $20000
  */
+

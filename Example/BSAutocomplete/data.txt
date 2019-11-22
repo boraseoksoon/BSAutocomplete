@@ -1,3 +1,16 @@
+Swift
+Objective-C
+Scala
+Kotlin
+C
+Javascript
+Python
+Clojure
+C#
+Scheme
+C++
+COBOL
+
 #Swift
 #Objective-C
 #Scala

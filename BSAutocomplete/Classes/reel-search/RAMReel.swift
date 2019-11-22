@@ -312,7 +312,12 @@ open class RAMReel
     
     weak var s = self
     
-    self.untouchedTarget = TextFieldTarget(controlEvents: UIControl.Event.editingChanged, textField: self.textField, hook: {_ in s?.placeholder = "";})
+    self.untouchedTarget = TextFieldTarget(controlEvents: UIControl.Event.editingChanged,
+                                           textField: self.textField,
+                                           hook: { text in
+                                            s?.placeholder = ""
+                                            text.text = text.text?.lowercased()
+    })
     
     self.keyboardCallbackWrapper.callback = { [weak self] notification in
       guard let `self` = self else { return }
