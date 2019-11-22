@@ -161,7 +161,7 @@ public class BSAutocomplete: UIView {
         var resolvedBaseView: UIView? = baseView
         
         // To guarantee the first VC initialization.
-        Delay(0.25) {
+        Delay(0.1) {
             if baseView == nil {
                 if let superview = self.superview {
                     resolvedBaseView = superview
@@ -291,13 +291,15 @@ extension BSAutocomplete {
       guard let either = self.either else { PRETTY(); return }
       switch either {
       case .textView(let textView):
-        self.appendAtLast(from: .textView(textView), selectedItem: text)
+        textView.text = text
+        
         
       case .textField(let textField):
-        self.appendAtLast(from: .textField(textField), selectedItem: text)
+        textField.text = text
       }
       
       self.hide()
+
       self.delegate?.autoCompleteDidChooseItem(text: text, sender: either)
     }
     
@@ -305,27 +307,6 @@ extension BSAutocomplete {
         guard let either = self.either else { PRETTY(); return }
         self.delegate?.autoCompleteTextDidChange(text: fullInputText, sender: either)
     }
-  }
-  
-  private func appendAtLast(from: Either<UITextView, UITextField>, selectedItem: String) -> Void {
-    switch from {
-    case .textView(let textView):
-      if let selectedRange = textView.selectedTextRange {
-        if let replaceTextRange = textView.textRange(from: selectedRange.start, to: selectedRange.start) {
-          // Replace it.
-          textView.replace(replaceTextRange, withText: selectedItem)
-        }
-      }
-      
-    case .textField(let textField):
-      if let selectedRange = textField.selectedTextRange {
-        if let replaceTextRange = textField.textRange(from: selectedRange.start, to: selectedRange.start) {
-          // Replace it.
-          textField.replace(replaceTextRange, withText: selectedItem)
-        }
-      }
-    }
-
   }
 }
 

@@ -119,24 +119,6 @@ class ViewController: UIViewController {
 extension ViewController: BSAutocompleteDelegate {
   func autoCompleteDidChooseItem(text: String, sender: Either<UITextView, UITextField>) -> Void {
     print("autoCompleteDidChooseItem : ", text)
-    
-    self.evaluateType(sender: sender) { [unowned self] sender in
-      /**
-       * User level logic to add the empty space at the end for convenience.
-       */
-      DispatchQueue.main.async {
-        switch sender {
-        case .textView(let textView):
-          guard let text = textView.text else { return }
-          textView.text = text + " "
-          
-        case .textField(let textField):
-          guard let text = textField.text else { return }
-          textField.text = text + " "
-        }
-      }
-      
-    }
   }
   
   func autoCompleteTextDidChange(text: String, sender: Either<UITextView, UITextField>) -> Void {
@@ -151,25 +133,6 @@ extension ViewController: BSAutocompleteDelegate {
     print("autoCompleteDidHide!")
   }
 }
-
-// MARK: - Own methods -
-extension ViewController {
-  func evaluateType(sender: Either<UITextView, UITextField>,
-                    complete: @escaping (_ either: Either<UITextView, UITextField>) -> Void) -> Void {
-    /// append additional empty space, " ".
-    DispatchQueue.main.async {
-      switch sender {
-      case .textView(let textView):
-        print("sender : \(textView)")
-        complete(sender)
-      case .textField(let textField):
-        print("sender : \(textField)")
-        complete(sender)
-      }
-    }
-  }
-}
-
 
 // MARK: - UITextFieldDelegate Methods -
 //extension ViewController: UITextFieldDelegate {
